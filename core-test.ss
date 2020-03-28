@@ -9,7 +9,8 @@
     (test-case "test if-let"
       (check (if-let [x #f] 'then 'else) => 'else)
       (check (if-let [x #t] 'then 'else) => 'then)
-      (check (if-let [x 'c] x     'else) => 'c))))
+      (check (if-let [x 'c] x     'else) => 'c)
+      (check (if-let [x #f] 'then) => nil))))
 
 (run-tests! core-test)
 (test-report-summary!)
