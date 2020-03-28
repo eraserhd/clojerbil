@@ -1,10 +1,12 @@
-(export ->
+(export nil true false
+        ->
         if-let
         inc
-        dec
-        nil)
+        dec)
 
 (def nil '())
+(def true #t)
+(def false #f)
 
 (defsyntax (-> stx)
   (syntax-case stx ()
