@@ -1,6 +1,6 @@
 (export nil true false
         ->
-        if-let
+        if-let when-let
         inc
         dec)
 
@@ -26,6 +26,13 @@
            (let ((binding $expr))
              then)
            else)))))
+
+(defsyntax (when-let stx)
+  (syntax-case stx (@list nil)
+    ((_ [binding expr] body ...)
+     #'(if-let [binding expr]
+         (begin
+           body ...)))))
 
 (def inc (cut + <> 1))
 (def dec (cut - <> 1))
