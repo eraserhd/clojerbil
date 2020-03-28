@@ -15,7 +15,9 @@
 (defsyntax (if-let stx)
   (syntax-case stx (@list nil)
     ((_ [binding expr] then)
-     #'(if-let [binding expr] then nil))
+     #'(if-let [binding expr]
+         then
+         nil))
     ((_ [binding expr] then else)
      #'(let (($expr expr))
          (if $expr
