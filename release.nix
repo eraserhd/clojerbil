@@ -1,10 +1,14 @@
 { nixpkgs ? (import ./nixpkgs.nix), ... }:
 let
-  pkgs = import nixpkgs { config = {}; };
-  clojerbil = pkgs.callPackage ./derivation.nix {};
+  pkgs = import nixpkgs {
+    config = {};
+    overlays = [
+      (import ./overlay.nix)
+    ];
+  };
 in {
   test = pkgs.runCommandNoCC "clojerbil-test" {} ''
     mkdir -p $out
-    : ${clojerbil}
+    : ${pkgs.clojerbil}
   '';
 }
