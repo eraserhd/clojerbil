@@ -7,8 +7,17 @@ let
     ];
   };
 in {
-  test = pkgs.runCommandNoCC "clojerbil-test" {} ''
-    mkdir -p $out
-    : ${pkgs.clojerbil}
-  '';
+  test = pkgs.stdenv.mkDerivation {
+    name = "clojerbil-tests";
+
+    src = ./.;
+    buildInputs = [ pkgs.gerbil ];
+
+    buildPhase = ''
+      gxi core-test.ss
+    '';
+    installPhase = ''
+      mkdir -p $out
+    '';
+  };
 }
