@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, gerbil, makeWrapper, ... }:
+{ stdenv, fetchFromGitHub, gambit, gerbil, makeWrapper, ... }:
 
 stdenv.mkDerivation rec {
   pname = "clojerbil";
@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
 
   src = ./.;
 
-  buildInputs = [ gerbil makeWrapper ];
+  buildInputs = [ gerbil gambit makeWrapper ];
 
   installPhase = ''
     mkdir -p $out/bin
