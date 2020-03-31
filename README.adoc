@@ -1,1 +1,41 @@
-= clojerbil
+clojerbil
+=========
+
+Clojerbil is a deliberately thin and deliberately terrible implementation of
+Clojure on top of Gerbil Scheme.  Its intent is to add Clojure-type niceties on
+top of Gerbil and allow simple Clojure code to work without making a complicated
+compatibility layer.
+
+* No special reader is implemented, it's just a library.
+* Immutable data structures will be implemented naively (and mayactually be
+  Gerbil's mutable structures), at least until someone has time and interest in
+  improving them.
+
+Implemented
+-----------
+
+* `true`, `false`, and `nil` are aliases for `#t`, `#f`, and `()`
+
+Macros:
+
+* `->`
+* `if-let`
+* `when-let`
+
+Functions:
+
+* `dec`
+* `get`
+* `get-in`
+* `inc`
+
+Example
+-------
+
+[code,scheme]
+----
+(import :clojerbil/core)
+
+(if-let [x true]
+  (displayln x))
+----
