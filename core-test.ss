@@ -19,7 +19,11 @@
       (check (get (hash (a-key 'a-value)) 'a-key) => 'a-value)
       (check (get (hash (a-key 'a-value)) 'a-key 'a-default) => 'a-value)
       (check (get (hash (a-key 'a-value)) 'missing-key 'a-default) => 'a-default)
-      (check (get nil 'a-key 'a-default) => 'a-default))))
+      (check (get nil 'a-key 'a-default) => 'a-default)
+      (check (get '#(a b c d) 1 'a-default) => 'b)
+      (check (get '#(a b c d) #f 'a-default) => 'a-default)
+      (check (get '#(a b c d) -1 'a-default) => 'a-default)
+      (check (get '#(a b c d) 4 'a-default) => 'a-default))))
 
 (run-tests! core-test)
 (test-report-summary!)
