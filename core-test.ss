@@ -24,7 +24,8 @@
       (check (get '#(a b c d) #f 'a-default) => 'a-default)
       (check (get '#(a b c d) -1 'a-default) => 'a-default)
       (check (get '#(a b c d) 4 'a-default) => 'a-default)
-      (check (get "hello" 3) => #\l))))
+      (check (get "hello" 3) => #\l)
+      (check (get #u8(9 16 42) 0) => 9))))
 
 (run-tests! core-test)
 (test-report-summary!)
