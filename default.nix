@@ -5,4 +5,4 @@ let
     overlays = [ (import ./overlay.nix) ];
   };
 
-in pkgs.clojerbil
+in pkgs.gerbilPackages.clojerbil
