@@ -50,13 +50,18 @@
 (defmethod (get (x <hash-table>) (k <t>) (default <t>))
   (hash-ref x k default))
 
-(defmethod (get (x <vector>) (k <fixnum>) (default <t>))
-  (cond
-   ((< k 0)                  default)
-   ((<= (vector-length x) k) default)
-   (else                     (vector-ref x k))))
-(defmethod (get (x <vector>) (k <t>) (default <t>))
-  default)
+(defsyntax implement-fixnum-get
+  (syntax-rules ()
+    ((_ type length ref) (begin
+                           (defmethod (get (x type) (k <fixnum>) (default <t>))
+                             (cond
+                               ((< k 0)           default)
+                               ((<= (length x) k) default)
+                               (else              (ref x k))))
+                           (defmethod (get (x type) (k <t>) (default <t>))
+                             default)))))
+
+(implement-fixnum-get <vector> vector-length vector-ref)
 
 (def (get-in x ks)
   (if (null? ks)
