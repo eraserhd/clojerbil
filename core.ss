@@ -61,6 +61,7 @@
                            (defmethod (get (x type) (k <t>) (default <t>))
                              default)))))
 
+(implement-fixnum-get <string> string-length string-ref)
 (implement-fixnum-get <vector> vector-length vector-ref)
 
 (def (get-in x ks)
