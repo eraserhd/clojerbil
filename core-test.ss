@@ -1,4 +1,5 @@
-(import :std/test
+(import :std/sugar
+        :std/test
         "core")
 
 (def core-test
@@ -13,7 +14,12 @@
       (check (if-let [x false] 'then) => nil))
     (test-case "test when-let"
       (check (when-let [x false] 'body1 'body2) => nil)
-      (check (when-let [x 'cond] 'body1 x) => 'cond))))
+      (check (when-let [x 'cond] 'body1 x) => 'cond))
+    (test-case "test get"
+      (check (get (hash (a-key 'a-value)) 'a-key) => 'a-value)
+      (check (get (hash (a-key 'a-value)) 'a-key 'a-default) => 'a-value)
+      (check (get (hash (a-key 'a-value)) 'missing-key 'a-default) => 'a-default)
+      (check (get nil 'a-key 'a-default) => 'a-default))))
 
 (run-tests! core-test)
 (test-report-summary!)

@@ -1,8 +1,10 @@
+(import :std/generic)
 (export nil true false
         ->
         if-let when-let
         inc
-        dec)
+        dec
+        get get-in)
 
 (def nil '())
 (def true #t)
@@ -36,4 +38,20 @@
 
 (def inc (cut + <> 1))
 (def dec (cut - <> 1))
+
+(defgeneric get
+  (lambda args nil))
+
+(defmethod (get (x <t>) (k <t>))
+  (get x k nil))
+
+(defmethod (get (x <null>) (k <t>) (default <t>))
+  default)
+(defmethod (get (x <hash-table>) (k <t>) (default <t>))
+  (hash-ref x k default))
+
+(def (get-in x ks)
+  (if (null? ks)
+    x
+    (get-in (get x (car ks)) (cdr ks))))
 
