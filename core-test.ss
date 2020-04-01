@@ -15,6 +15,11 @@
     (test-case "test when-let"
       (check (when-let [x false] 'body1 'body2) => nil)
       (check (when-let [x 'cond] 'body1 x) => 'cond))
+    (test-case "test count"
+      (check (count "hello") => 5)
+      (check (count #(1 2 3)) => 3)
+      (check (count '()) => 0)
+      (check (count '(1 2)) => 2))
     (test-case "test get"
       (check (get (hash (a-key 'a-value)) 'a-key) => 'a-value)
       (check (get (hash (a-key 'a-value)) 'a-key 'a-default) => 'a-value)

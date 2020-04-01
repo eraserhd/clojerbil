@@ -24,6 +24,7 @@ Macros:
 
 Functions:
 
+* `count`
 * `dec`
 * `get`
 * `get-in`
