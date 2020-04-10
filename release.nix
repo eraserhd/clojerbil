@@ -14,7 +14,7 @@ in {
     buildInputs = [ pkgs.gerbil ];
 
     buildPhase = ''
-      gxi core-test.ss
+      gxi run-tests.ss
     '';
     installPhase = ''
       mkdir -p $out

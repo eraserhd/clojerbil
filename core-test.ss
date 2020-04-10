@@ -1,6 +1,7 @@
 (import :std/sugar
         :std/test
         "core")
+(export core-test)
 
 (def core-test
   (test-suite "test :clojerbil/core"
@@ -31,10 +32,3 @@
       (check (get '#(a b c d) 4 'a-default) => 'a-default)
       (check (get "hello" 3) => #\l)
       (check (get #u8(9 16 42) 0) => 9))))
-
-(run-tests! core-test)
-(test-report-summary!)
-
-(case (test-result)
-  ((OK) (exit 0))
-  (else (exit 1)))

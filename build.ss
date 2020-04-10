@@ -3,4 +3,5 @@
 (import :std/build-script)
 
 (defbuild-script
-  '("core"))
+  '("core"
+    "prelude"))
