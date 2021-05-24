@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, gambit, gerbil, ... }:
+{ stdenv, lib, fetchFromGitHub, gambit, gerbil, ... }:
 
 stdenv.mkDerivation rec {
   pname = "clojerbil";
@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
     GERBIL_PATH=$out gxi build.ss
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "TODO: fill me in";
     homepage = "https://github.com/eraserhd/clojerbil";
     license = licenses.publicDomain;
